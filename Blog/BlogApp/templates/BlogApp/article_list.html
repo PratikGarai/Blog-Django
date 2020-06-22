@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Blog Home</title>
+	</head>
+	<body>
+		{% include "navbar.html" %}
+		<h2>Here are the Availbale Posts</h2>
+		<ul>
+			{% for i in object_list %}
+			<li><a href ="{{ i.pk }}">{{ i.title }}</a></li>
+			{% endfor %}
+		</ul>
+	</body>
+</html>
