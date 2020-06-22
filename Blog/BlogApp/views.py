@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from . import models
 
-# Create your views here.
+class ArticleListView(ListView):
+    queryset = models.Article.objects.all()
