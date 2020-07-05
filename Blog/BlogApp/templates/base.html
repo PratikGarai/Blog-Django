@@ -12,7 +12,7 @@
 
 		<!-- Bootstrap -->
 		<link rel="stylesheet" href="/static/css/bootstrap/bootstrap.css">
-		<script src="/static/js/bootstrap/bootstrap.bundle.js"></script>
+		<script src="/static/js/bootstrap/bootstrap.js"></script>
 		
 		<!-- Medium.com editor -->
 		<link rel="stylesheet" href="/static/css/medium/medium-editor.css">
@@ -24,15 +24,45 @@
 		<link rel="stylesheet" href="/static/css/blog.css">
 		
 		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Russo+One&display=swap" rel="stylesheet">
 
 	</head>
 
 	<body>
 		<!-- Navbar -->
+		<nav class="navbar navbar-default techfont custom-navbar">
+			<div class="container">
+				<ul class="nav navbar-nav">
+					<li><a class="navbar-brand bigbrand" href="{% url 'BlogApp:Article-List' %}">My Blog</a></li>
+					<li><a href="{% url 'BlogApp:About' %}">About</a></li>
+					<li><a href="https://github.com/PratikGarai">GitHub</a></li>
+					<li><a href="https://www.linkedin.com/in/pratik-garai-bab1a4191/">LinkedIn</a></li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					{% if user.is_authenticated %}
+					<li><a href="{% url 'BlogApp:Article-Create' %}">New Article</a></li>
+					<li><a href="{% url 'BlogApp:Draft-List' %}">Drafts</a></li>
+					<li><a href="{% url 'BlogApp:logout' %}">Log Out</a></li>
+					<li><a>Welcome : {{ user.username }}</a></li>
+					{% else %}
+					<li><a href="{% url 'BlogApp:login' %}"><span class="glyphicon glyphicon-user"></span>Log In</a></li>
+					{% endif %}
+				</ul>
+			</div>
+		</nav>
 		
 		<!-- Main Body -->
-		{% block content %}
-		{% endblock %}
+		<div class="content container">
+			<div class="row">
+				<div class="col-sm-10">
+					<div class="blog_posts">
+						{% block content %}
+						{% endblock %}
+					</div>
+				</div>
+			</div>
+		</div>
 	
 		<script>var editor = new MediumEditor('.editable');</script>
 	</body>
