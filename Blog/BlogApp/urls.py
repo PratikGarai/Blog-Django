@@ -12,4 +12,8 @@ urlpatterns = [
         path('article/<int:pk>/edit/', views.ArticleUpdateView.as_view(), name="Article-Update"),
         path('article/<int:pk>/remove/', views.ArticleDeleteView.as_view(), name="Article-Delete"),
         path('drafts/', views.DraftListView.as_view(), name="Draft-List"),
+        path('article/<int:pk>/comment/', views.add_comment_to_post, name="Comment-Add"),
+        path('comment/<int:pk>/approve/', views.comment_approve, name="Comment-Approve"),
+        path('comment/<int:pk>/remove/', views.comment_remove, name="Comment-Remove"),
+        path('article/<int:pk>/publish/', views.article_publish, name="Article-Publish"),
         ]
