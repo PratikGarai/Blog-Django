@@ -1,6 +1,7 @@
 from django.urls import path
 from django.conf.urls import url
 from . import views
+from django.contrib.auth.views import LoginView, LogoutView
 
 app_name = 'BlogApp'
 
@@ -16,4 +17,6 @@ urlpatterns = [
         path('comment/<int:pk>/approve/', views.comment_approve, name="Comment-Approve"),
         path('comment/<int:pk>/remove/', views.comment_remove, name="Comment-Remove"),
         path('article/<int:pk>/publish/', views.article_publish, name="Article-Publish"),
+        path('accounts/login/', LoginView.as_view(), name = 'login'),
+        path('accounts/logout/', LogoutView.as_view(), name = 'logout', kwargs={'next_page':'/'}),
         ]
