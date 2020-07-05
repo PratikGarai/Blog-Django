@@ -1,12 +1,39 @@
 <!DOCTYPE html>
-<html>
+{% load static %}
+<html lang="en">
 	<head>
+
 		<meta charset = "utf-8">
-		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Blog</title>
+		
+		<!-- JQuery -->
+		<script src="/static/js/jquery.js"></script>
+
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="/static/css/bootstrap/bootstrap.css">
+		<script src="/static/js/bootstrap/bootstrap.bundle.js"></script>
+		
+		<!-- Medium.com editor -->
+		<link rel="stylesheet" href="/static/css/medium/medium-editor.css">
+		<link rel="stylesheet" href="/static/css/medium/themes/default.css">
+		<script src="/static/js/medium/medium-editor.js"></script>
+		
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="/static/css/hue.css">
+		<link rel="stylesheet" href="/static/css/blog.css">
+		
+		<!-- Fonts -->
+
 	</head>
+
 	<body>
-		<h2>Base</h2>
+		<!-- Navbar -->
+		
+		<!-- Main Body -->
 		{% block content %}
 		{% endblock %}
+	
+		<script>var editor = new MediumEditor('.editable');</script>
 	</body>
 </html>
