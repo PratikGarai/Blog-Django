@@ -18,5 +18,5 @@ urlpatterns = [
         path('comment/<int:pk>/remove/', views.comment_remove, name="Comment-Remove"),
         path('article/<int:pk>/publish/', views.article_publish, name="Article-Publish"),
         path('accounts/login/', LoginView.as_view(), name = 'login'),
-        path('accounts/logout/', LogoutView.as_view(), name = 'logout', kwargs={'next_page':'/'}),
+        path('accounts/logout/', views.logout_view_func , name = 'logout'),
         ]

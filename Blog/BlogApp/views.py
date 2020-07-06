@@ -6,6 +6,7 @@ from . import forms
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 class AboutView(TemplateView):
     template_name = 'about.html'
@@ -13,11 +14,14 @@ class AboutView(TemplateView):
 
 class ArticleListView(ListView):
     template_name = 'BlogApp/article_list.html'
-    queryset = models.Article.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+    
+    def get_queryset(self):
+        return models.Article.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 
 
 class ArticleDetailView(DetailView):
     template_name = 'BlogApp/article_detail.html'
+    
     def get_queryset(self):
         if not self.request.user.is_authenticated:
             return models.Article.objects.filter(published_date__lte=timezone.now())
@@ -76,7 +80,7 @@ def article_publish(request, pk):
     return redirect('BlogApp:Article-Detail', pk=pk)
 
 
-########   Comments   #########
+########   Comments   ########
 
 
 def add_comment_to_post(request, pk):
@@ -106,3 +110,17 @@ def comment_remove(request, pk):
     print(comment.article)
     comment.delete()
     return redirect('BlogApp:Article-Detail', pk=article_pk)
+
+
+########   LOGOUT   ########
+
+
+@login_required
+def logout_view_func(request):
+
+    if request.method=="POST":
+        logout(request)
+        return redirect('BlogApp:Article-List')
+
+    else :
+        return render(request,"registration/logout.html",{})
