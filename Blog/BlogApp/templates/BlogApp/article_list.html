@@ -1,14 +1,21 @@
 {% extends 'base.html' %}
 	{% block content %}
+
 	<div class="centerstage">
+
 		{% for article in object_list %}
+
 		<div class="article">
-			<h1><a href="{% url 'BlogApp:Article-Detail' pk=article.pk %}">{{ article.title }}</a></h1>
+			<h1 class="hue"><strong><a href="{% url 'BlogApp:Article-Detail' pk=article.pk %}">{{ article.title }}</a></strong></h1>
 			<div class="date">
 				<p>Published on : {{ article.published_date|date:"D, d M Y" }}</p>
 			</div>
 			<a href="{% url 'BlogApp:Article-Detail' pk=article.pk %}">Comments : {{ article.approve_comments.count }}</a> 
+			<hr>
 		</div>
+
 		{% endfor %}
+		
 	</div>
+
 	{% endblock %}

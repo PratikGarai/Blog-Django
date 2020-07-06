@@ -1,3 +1,45 @@
 {% extends 'base.html' %}
+
 	{% block content %}
+
+	<h1 class="article-title hue"><strong>{{ object.title }}</strong></h1>
+	{% if object.published_date %}
+	<div class="date article-date">
+		{{ object.published_date }}
+	</div>
+	{% else %}
+		{% if user == object.author %}
+		<a class="btn btn-success" href="{% url 'BlogApp:Article-Publish' pk=object.pk %}">Publish</a>
+		{% endif %}
+	{% endif %}
+	<br>
+	<p class="article-content">{{ object.text|safe|linebreaksbr }}</p>
+	<br>
+	{% if user == object.author %}
+	<a class="btn btn-primary" href="{% url 'BlogApp:Article-Update' pk=object.pk %}"><img src="/static/icons/pencil.svg" alt="" class="side-icon"> Edit</a>
+	<a class="btn btn-danger" href="{% url 'BlogApp:Article-Delete' pk=object.pk %}"><img src="/static/icons/x.svg" alt="" class="side-icon"> Delete</a>
+	{% endif %}
+	<br><br>
+	<a class="btn btn-primary" href="{% url 'BlogApp:Comment-Add' pk=object.pk %}"><img src="/static/icons/comment.svg" alt="" class="side-icon"> Comment</a>
+	<br><hr><br>
+	<!-- Comments -->
+	<h3><strong> Comments </strong></h3><br>
+	<div class="container comments-section">
+		{% for comment in object.comments.all %}
+		<div class="comment-box">
+		{% if user == object.author or comment.approved_comment %}
+			{{ comment.create_date }}
+			{% if not comment.approved_comment %}
+			<a class="btn btn-success" href="{% url 'BlogApp:Comment-Approve' pk=object.pk %}"><img src="/static/icons/pencil.svg" alt="" class="side-icon"> Approve</a>
+			<a class="btn btn-danger" href="{% url 'BlogApp:Comment-Remove' pk=object.pk %}"><img src="/static/icons/x.svg" alt="" class="side-icon"> Remove</a>
+			{% endif %}
+			<p><strong>{{ comment.author }}</strong> commented</p>
+			<p>{{ comment.text|safe|linebreaksbr }}</p>
+			<hr>
+		{% endif %}
+		{% empty %}
+		<h5>No Comments Yet</h5>
+		</div>
+		{% endfor %}
+	</div>
 	{% endblock %}

@@ -18,16 +18,21 @@ class ArticleListView(ListView):
 
 class ArticleDetailView(DetailView):
     template_name = 'BlogApp/article_detail.html'
-    queryset = models.Article.objects.all() 
- 
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            return models.Article.objects.filter(published_date__lte=timezone.now())
+        return models.Article.objects.all() 
+
 
 class ArticleCreateView(LoginRequiredMixin, CreateView):
     login_url = '/login/'
     redirect_field_name = 'BlogApp/article_detail.html'
 
     template_name = 'BlogApp/article_create.html'
-    queryset = models.Article.objects.all() 
     form_class = forms.ArticleForm
+    
+    def get_queryset(self):
+        return models.Article.objects.filter(author=self.request.user)
 
 
 class ArticleUpdateView(LoginRequiredMixin, UpdateView):
@@ -35,8 +40,10 @@ class ArticleUpdateView(LoginRequiredMixin, UpdateView):
     redirect_field_name = 'BlogApp/article_detail.html'
 
     template_name = 'BlogApp/article_update.html'
-    queryset = models.Article.objects.all() 
     form_class = forms.ArticleForm
+    
+    def get_queryset(self):
+        return models.Article.objects.filter(author=self.request.user)
 
 
 class ArticleDeleteView(LoginRequiredMixin, DeleteView):
@@ -44,7 +51,9 @@ class ArticleDeleteView(LoginRequiredMixin, DeleteView):
     redirect_field_name = 'BlogApp/article_detail.html'
 
     template_name = 'BlogApp/article_delete.html'
-    queryset = models.Article.objects.all()   
+    
+    def get_queryset(self):
+        return models.Article.objects.filter(author=self.request.user)
 
     def get_success_url(self):
         return reverse_lazy("BlogApp:Article-List")
@@ -55,7 +64,9 @@ class DraftListView(LoginRequiredMixin, ListView):
     redirect_field_name = 'BlogApp/article_detail.html'
 
     template_name = 'BlogApp/article_list.html'
-    queryset = models.Article.objects.filter(published_date__isnull=True).order_by('create_date')
+
+    def get_queryset(self):
+        return  models.Article.objects.filter(author=self.request.user).filter(published_date__isnull=True).order_by('create_date')
 
 
 @login_required
