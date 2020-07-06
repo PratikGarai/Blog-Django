@@ -30,8 +30,8 @@
 		{% if user == object.author or comment.approved_comment %}
 			{{ comment.create_date }}
 			{% if not comment.approved_comment %}
-			<a class="btn btn-success" href="{% url 'BlogApp:Comment-Approve' pk=object.pk %}"><img src="/static/icons/pencil.svg" alt="" class="side-icon"> Approve</a>
-			<a class="btn btn-danger" href="{% url 'BlogApp:Comment-Remove' pk=object.pk %}"><img src="/static/icons/x.svg" alt="" class="side-icon"> Remove</a>
+			<a class="btn btn-success" href="{% url 'BlogApp:Comment-Approve' pk=comment.pk %}"><img src="/static/icons/pencil.svg" alt="" class="side-icon"> Approve</a>
+			<a class="btn btn-danger" href="{% url 'BlogApp:Comment-Remove' pk=comment.pk %}"><img src="/static/icons/x.svg" alt="" class="side-icon"> Remove</a>
 			{% endif %}
 			<p><strong>{{ comment.author }}</strong> commented</p>
 			<p>{{ comment.text|safe|linebreaksbr }}</p>

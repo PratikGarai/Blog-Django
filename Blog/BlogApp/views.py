@@ -72,7 +72,7 @@ class DraftListView(LoginRequiredMixin, ListView):
 @login_required
 def article_publish(request, pk):
     article = get_object_or_404(models.Article, pk=pk)
-    post.publish()
+    article.publish()
     return redirect('BlogApp:Article-Detail', pk=pk)
 
 
@@ -87,9 +87,9 @@ def add_comment_to_post(request, pk):
             comment = form.save(commit = False)
             comment.article = article
             comment.save()
-            return redirect('BlogApp:Aritcle-Detail', pk=pk)
+            return redirect('BlogApp:Article-Detail', pk=pk)
     else:
-        form = CommentForm()
+        form = forms.CommentForm()
     return render(request, 'BlogApp/comment_form.html', {'form':form})
 
 @login_required
@@ -102,5 +102,7 @@ def comment_approve(request, pk):
 def comment_remove(request, pk):
     comment =  get_object_or_404(models.Comment, pk=pk)
     article_pk = comment.article.pk
+    print(comment)
+    print(comment.article)
     comment.delete()
     return redirect('BlogApp:Article-Detail', pk=article_pk)
