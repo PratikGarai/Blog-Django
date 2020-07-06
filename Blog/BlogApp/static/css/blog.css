@@ -16,3 +16,32 @@
 .centerstage{
 	margin : auto;
 }
+
+.article-title{
+	font-family : 'Russo One', sans-serif;
+	text-align : center;
+	font-size : 3em;
+}
+
+.article-date{
+	text-align : right;
+}
+
+.article-main{
+	border : 2px solid grey;
+	border-radius : 4px;
+}
+
+.article-content{
+	font-family : 'Montserrat';
+	font-size : 1.5em;
+}
+
+.comment-box .buttons{
+	align : right;
+}
+.article-textarea{
+	background : #f8f9fa;
+	border-radius : 5px;
+	padding : 5px;
+}

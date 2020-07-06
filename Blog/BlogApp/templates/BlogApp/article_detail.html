@@ -2,19 +2,25 @@
 
 	{% block content %}
 
-	<h1 class="article-title hue"><strong>{{ object.title }}</strong></h1>
-	{% if object.published_date %}
-	<div class="date article-date">
-		{{ object.published_date }}
-	</div>
-	{% else %}
-		{% if user == object.author %}
-		<a class="btn btn-success" href="{% url 'BlogApp:Article-Publish' pk=object.pk %}">Publish</a>
+	<div class = "container article-main">
+		<h1 class="article-title hue">{{ object.title }}</h1>
+		{% if object.published_date %}
+		<div class="date article-date">
+			{{ object.published_date }}
+		</div>
+		{% else %}
+			{% if user == object.author %}
+			<a class="btn btn-success" href="{% url 'BlogApp:Article-Publish' pk=object.pk %}">Publish</a>
+			{% endif %}
 		{% endif %}
-	{% endif %}
-	<br>
-	<p class="article-content">{{ object.text|safe|linebreaksbr }}</p>
-	<br>
+		<br>
+		<div class="article-content">
+		<p>{{ object.text|safe|linebreaksbr }}</p>
+		<p class="article-date"><em>Written By : {{ object.author }}</em></p>
+		</div>
+		<br>
+	</div>
+		<br>
 	{% if user == object.author %}
 	<a class="btn btn-primary" href="{% url 'BlogApp:Article-Update' pk=object.pk %}"><img src="/static/icons/pencil.svg" alt="" class="side-icon"> Edit</a>
 	<a class="btn btn-danger" href="{% url 'BlogApp:Article-Delete' pk=object.pk %}"><img src="/static/icons/x.svg" alt="" class="side-icon"> Delete</a>
@@ -29,12 +35,14 @@
 		<div class="comment-box">
 		{% if user == object.author or comment.approved_comment %}
 			{{ comment.create_date }}
-			{% if not comment.approved_comment %}
-			<a class="btn btn-success" href="{% url 'BlogApp:Comment-Approve' pk=comment.pk %}"><img src="/static/icons/pencil.svg" alt="" class="side-icon"> Approve</a>
-			<a class="btn btn-danger" href="{% url 'BlogApp:Comment-Remove' pk=comment.pk %}"><img src="/static/icons/x.svg" alt="" class="side-icon"> Remove</a>
-			{% endif %}
 			<p><strong>{{ comment.author }}</strong> commented</p>
 			<p>{{ comment.text|safe|linebreaksbr }}</p>
+			{% if not comment.approved_comment %}
+			<div class="buttons">
+				<a class="btn btn-success" href="{% url 'BlogApp:Comment-Approve' pk=comment.pk %}"><img src="/static/icons/pencil.svg" alt="" class="side-icon"> Approve</a>
+				<a class="btn btn-danger" href="{% url 'BlogApp:Comment-Remove' pk=comment.pk %}"><img src="/static/icons/x.svg" alt="" class="side-icon"> Remove</a>
+			</div>
+			{% endif %}
 			<hr>
 		{% endif %}
 		{% empty %}

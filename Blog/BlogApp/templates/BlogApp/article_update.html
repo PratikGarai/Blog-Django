@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 	{% block content %}
-	<h1> Update Article </h1>
+	<h1 class="techfont"> Update Article </h1>
+	<br>
 	<form class = "article-form" method="POST">
 		{% csrf_token %}
 		{{ form.as_p }}
