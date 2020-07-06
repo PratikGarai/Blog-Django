@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 	{% block content %}
+	<div class="jumbotron">
 	<form method="POST">
 		{% csrf_token %}
-		<p>Are you sure you want to delete "{{ object }}" ?</p>
+		<p><h3>Are you sure you want to delete "{{ object }}" ?</h3></p>
 		<button type="submit" class="delete btn btn-danger">Yes, Delete</button>
 		<a href="{% url 'BlogApp:Article-Detail' pk=object.pk %}" class="btn btn-secondary">Cancel</a>
 	</form>
+	</div>
 	{% endblock %}

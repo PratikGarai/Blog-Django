@@ -37,7 +37,8 @@
 	font-size : 1.5em;
 }
 
-.comment-box .buttons{
+.comment-box .buttons,
+.right-btn-div{
 	align : right;
 }
 .article-textarea{

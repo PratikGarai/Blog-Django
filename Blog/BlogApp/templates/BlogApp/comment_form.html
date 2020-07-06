@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 	{% block content %}
-	<h1> New Comment </h1>
+	<br>
+	<h1 class="techfont"> New Comment </h1>
+	<hr>
 	<form class="article-form" method="POST">
 		{% csrf_token %}
 		{{ form.as_p }}

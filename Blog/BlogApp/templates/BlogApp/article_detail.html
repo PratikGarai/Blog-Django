@@ -1,18 +1,17 @@
 {% extends 'base.html' %}
 
 	{% block content %}
-
+	<br>
 	<div class = "container article-main">
+		<br>
 		<h1 class="article-title hue">{{ object.title }}</h1>
-		{% if object.published_date %}
 		<div class="date article-date">
+		{% if object.published_date %}
 			{{ object.published_date }}
-		</div>
 		{% else %}
-			{% if user == object.author %}
-			<a class="btn btn-success" href="{% url 'BlogApp:Article-Publish' pk=object.pk %}">Publish</a>
-			{% endif %}
+			{{ object.create_date }}
 		{% endif %}
+		</div>
 		<br>
 		<div class="article-content">
 		<p>{{ object.text|safe|linebreaksbr }}</p>
@@ -21,6 +20,11 @@
 		<br>
 	</div>
 		<br>
+	{% if not object.published_date %}
+		{% if user == object.author %}
+		<a class="btn btn-success" href="{% url 'BlogApp:Article-Publish' pk=object.pk %}">Publish</a>
+		{% endif %}
+	{% endif %}
 	{% if user == object.author %}
 	<a class="btn btn-primary" href="{% url 'BlogApp:Article-Update' pk=object.pk %}"><img src="/static/icons/pencil.svg" alt="" class="side-icon"> Edit</a>
 	<a class="btn btn-danger" href="{% url 'BlogApp:Article-Delete' pk=object.pk %}"><img src="/static/icons/x.svg" alt="" class="side-icon"> Delete</a>
