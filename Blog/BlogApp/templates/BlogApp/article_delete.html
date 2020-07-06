@@ -1,3 +1,9 @@
 {% extends 'base.html' %}
 	{% block content %}
+	<form method="POST">
+		{% csrf_token %}
+		<p>Are you sure you want to delete "{{ object }}" ?</p>
+		<button type="submit" class="delete btn btn-danger">Yes, Delete</button>
+		<a href="{% url 'BlogApp:Article-Detail' pk=object.pk %}" class="btn btn-secondary">Cancel</a>
+	</form>
 	{% endblock %}

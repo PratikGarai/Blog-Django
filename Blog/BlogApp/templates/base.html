@@ -30,13 +30,13 @@
 
 	<body>
 		<!-- Navbar -->
-		<nav class="navbar navbar-default techfont custom-navbar">
+		<nav class="navbar navbar-light bg-light techfont custom-navbar">
 			<div class="container">
 				<ul class="nav navbar-nav">
 					<li><a class="navbar-brand bigbrand hue" href="{% url 'BlogApp:Article-List' %}">My Blog</a></li>
 					<li><a href="{% url 'BlogApp:About' %}">About</a></li>
-					<li><a href="https://github.com/PratikGarai">GitHub</a></li>
-					<li><a href="https://www.linkedin.com/in/pratik-garai-bab1a4191/">LinkedIn</a></li>
+					<li><a href="https://github.com/PratikGarai" target="_blank">GitHub</a></li>
+					<li><a href="https://www.linkedin.com/in/pratik-garai-bab1a4191/" target="_blank">LinkedIn</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -64,6 +64,5 @@
 			</div>
 		</div>
 	
-		<script>var editor = new MediumEditor('.editable');</script>
 	</body>
 </html>

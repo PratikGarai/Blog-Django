@@ -1,3 +1,14 @@
 {% extends 'base.html' %}
 	{% block content %}
+	<h1> New Article </h1>
+	<form class = "article-form" method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit" class="save btn btn-success">Save</button>
+		<a href="{% url 'BlogApp:Article-List' %}" class="btn btn-secondary">Cancel</a>
+	</form>
+
+	<script>
+		var editor = new MediumEditor('.editable');
+	</script>
 	{% endblock %}

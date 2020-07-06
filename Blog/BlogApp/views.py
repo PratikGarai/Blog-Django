@@ -25,7 +25,7 @@ class ArticleDetailView(DetailView):
 
 
 class ArticleCreateView(LoginRequiredMixin, CreateView):
-    login_url = '/login/'
+    login_url = '/accounts/login/'
     redirect_field_name = 'BlogApp/article_detail.html'
 
     template_name = 'BlogApp/article_create.html'
@@ -36,7 +36,7 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
 
 
 class ArticleUpdateView(LoginRequiredMixin, UpdateView):
-    login_url = '/login/'
+    login_url = '/accounts/login/'
     redirect_field_name = 'BlogApp/article_detail.html'
 
     template_name = 'BlogApp/article_update.html'
@@ -47,7 +47,7 @@ class ArticleUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class ArticleDeleteView(LoginRequiredMixin, DeleteView):
-    login_url = '/login/'
+    login_url = '/accounts/login/'
     redirect_field_name = 'BlogApp/article_detail.html'
 
     template_name = 'BlogApp/article_delete.html'
@@ -60,7 +60,7 @@ class ArticleDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class DraftListView(LoginRequiredMixin, ListView):
-    login_url = '/login/'
+    login_url = '/accounts/login/'
     redirect_field_name = 'BlogApp/article_detail.html'
 
     template_name = 'BlogApp/article_list.html'
@@ -88,8 +88,6 @@ def add_comment_to_post(request, pk):
             comment.article = article
             comment.save()
             return redirect('BlogApp:Aritcle-Detail', pk=pk)
-        else:
-            return render(request, 'error.html', {'message':'Form Invalid'})
     else:
         form = CommentForm()
     return render(request, 'BlogApp/comment_form.html', {'form':form})

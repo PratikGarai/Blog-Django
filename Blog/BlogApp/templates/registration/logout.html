@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+	<h2> Do you really want to LogOut? </h2>
+	
+	{% if form.errors %}
+	<div class="alert alert-danger">
+		Some error occured. Please reload the page and try again!
+	</div>
+	{% endif %}
+	<form action="{% url 'BlogApp:logout' %}" method="POST" >
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="Yes, Logout" class="btn btn-primary">
+		<input type="hidden" name="next" value="{{ next }}">
+		<a href="/" class="btn btn-primary">No, I don't!</a>
+	</form>
+	<script>
+		$(document).ready(function(){
+			$(".errorlist").hide();
+		});
+	</script>
+	
+</div>
+{% endblock %}

@@ -8,9 +8,13 @@
 		<div class="article">
 			<h1 class="hue"><strong><a href="{% url 'BlogApp:Article-Detail' pk=article.pk %}">{{ article.title }}</a></strong></h1>
 			<div class="date">
+			{% if article.published_date %}
 				<p>Published on : {{ article.published_date|date:"D, d M Y" }}</p>
+			{% else %}
+				<p>Created on : {{ article.create_date|date:"D, d M Y" }}</p>
+			{% endif %}
 			</div>
-			<a href="{% url 'BlogApp:Article-Detail' pk=article.pk %}">Comments : {{ article.approve_comments.count }}</a> 
+			<a href="{% url 'BlogApp:Article-Detail' pk=article.pk %}">Comments : {{ article.approve_comments.count }}</a>
 			<hr>
 		</div>
 
