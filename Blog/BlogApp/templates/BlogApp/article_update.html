@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Update a post</title>
-	</head>
-	<body>
-		<h1>Edit</h1>
-		<form method="POST">
-			{% csrf_token %}
-			{{ form.as_p }}
-			<input type="submit" value="Post">
-			<a href='{% url "BlogApp:Article-List" %}'>Cancel</a>
-		</form>
-	</body>
-</html>
+{% extends 'base.html' %}
+	{% block content %}
+	{% endblock %}

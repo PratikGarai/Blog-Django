@@ -46,7 +46,7 @@
 					<li><a href="{% url 'BlogApp:logout' %}">Log Out</a></li>
 					<li><a>Welcome : {{ user.username }}</a></li>
 					{% else %}
-					<li><a href="{% url 'BlogApp:login' %}"><span class="glyphicon glyphicon-user"></span>Log In</a></li>
+					<li><a href="{% url 'BlogApp:login' %}"><img src="/static/icons/profile-fill.svg" alt="" class="side-icon"> Log In</a></li>
 					{% endif %}
 				</ul>
 			</div>

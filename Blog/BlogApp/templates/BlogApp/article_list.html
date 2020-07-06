@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Blog Home</title>
-	</head>
-	<body>
-		{% include "navbar.html" %}
-		<h2>Here are the Availbale Posts</h2>
-		<ul>
-			{% for i in object_list %}
-			<li><a href ="{{ i.pk }}">{{ i.title }}</a></li>
-			{% endfor %}
-		</ul>
-	</body>
-</html>
+{% extends 'base.html' %}
+	{% block content %}
+	<div class="centerstage">
+		{% for article in object_list %}
+		<div class="article">
+			<h1><a href="{% url 'BlogApp:Article-Detail' pk=article.pk %}">{{ article.title }}</a></h1>
+			<div class="date">
+				<p>Published on : {{ article.published_date|date:"D, d M Y" }}</p>
+			</div>
+			<a href="{% url 'BlogApp:Article-Detail' pk=article.pk %}">Comments : {{ article.approve_comments.count }}</a> 
+		</div>
+		{% endfor %}
+	</div>
+	{% endblock %}
