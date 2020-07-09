@@ -24,9 +24,9 @@ TEMP_DIR = os.path.join(BASE_DIR, 'static', 'templates')
 SECRET_KEY = '6n-2pr71f-bq1m%h+&_1=@nz&c#g@s9iag3nx@%k@zr55(gkr9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -86,7 +86,6 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 PASSWORD_HASHERS = [
-        'django.contrib.auth.hashers.Argon2PasswordHasher',
         'django.contrib.auth.hashers.PBKDF2PasswordHasher',
         'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
         ]
