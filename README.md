@@ -1,4 +1,4 @@
-# Blog-Clone-Django
+# Blog-Django
 
 This BlogWebApp has the following features :
 <ol>
