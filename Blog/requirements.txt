@@ -13,3 +13,4 @@ stripe==2.55.0
 tinydb==4.2.0
 tuspy==0.2.4
 urllib3==1.25.11
+whitenoise==5.2.0
