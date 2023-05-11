@@ -2,7 +2,7 @@ asgiref==3.2.10
 certifi==2022.12.7
 chardet==3.0.4
 Django==3.1.14
-future==0.18.2
+future==0.18.3
 idna==2.10
 pytz==2020.1
 PyVimeo==1.1.0
