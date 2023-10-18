@@ -12,5 +12,5 @@ sqlparse==0.4.4
 stripe==2.55.0
 tinydb==4.2.0
 tuspy==0.2.4
-urllib3==1.26.5
+urllib3==1.26.18
 whitenoise==5.2.0
