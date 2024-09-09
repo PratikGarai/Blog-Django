@@ -6,7 +6,7 @@ future==0.18.3
 idna==3.7
 pytz==2020.1
 PyVimeo==1.1.0
-requests==2.31.0
+requests==2.32.2
 six==1.15.0
 sqlparse==0.4.4
 stripe==2.55.0
